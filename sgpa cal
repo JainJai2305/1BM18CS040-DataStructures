@@ -1,0 +1,47 @@
+#include<stdio.h>
+float calculate_grade_points(float marks,float credits )
+{
+    float gp,gpa ;
+    if(marks>=90)
+        {gp=10 ;}
+    else if(marks>=75)
+        {gp=9 ;}
+    else if(marks>=65)
+        {gp=8 ;}
+    else if(marks>=55)
+        {gp=7 ;}
+    else if(marks>=75)
+        {gp=6 ;}
+    else
+       {gp=0 ;}
+    gpa=gp*credits ;
+    return gpa ;
+}
+void main()
+{
+    struct student
+    {
+        char name[100] ;
+        float marks[5] ;
+        float credits[5] ;
+    }s1;
+    float gg ;
+    printf("enter name :\n") ;
+    gets(s1.name) ;
+    printf("enter marks out of 100 \n") ;
+    for(int x=0;x<5;x++)
+    {
+        scanf("%f",&s1.marks[x]) ;
+    }
+    printf("enter credits \n") ;
+    for(int x=0;x<5;x++)
+    {
+        scanf("%f",&s1.credits[x]) ;
+    }
+    float sum=0 ;
+    for(int x=0;x<5;x++)
+    {
+        gg =calculate_grade_points( s1.marks[x],s1.credits[x] ) ;
+        sum+=gg ;
+    }
+    float total_credits= 0 ;
