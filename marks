@@ -1,0 +1,22 @@
+#include<stdio.h>
+void main()
+{
+  structure student
+  {
+    int m1;
+    int m2;
+    int m3;
+    int m4;
+     int m5;
+  };
+  struct student x;
+  printf("Enter the marks of 5 subjects \n");
+  scanf("%d%d%d%d%d",&x.m1,&x.m2,&x.m3,&x.m4,&x.m5);
+  printf("The marks of students are\n");
+  printf("The marks in subject 1 are %d \n",x.m1);
+  printf("The marks in subject 2 are %d \n",x.m2);
+  printf("The marks in subject 3 are %d \n",x.m3);
+  printf("The marks in subject 4 are %d \n",x.m4);
+  printf("The marks in subject 5 are %d \n",x.m5);
+  
+}
