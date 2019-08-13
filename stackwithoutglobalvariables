@@ -6,9 +6,8 @@ void push (int i,int*p,int*top)
         printf("stack overflow\n");
         return ;
     }
-
-    *(p+*top)=i ;
-    *top++ ;
+    *p=i ;
+    ++*top ;
 }
 int pop(int*p,int *top)
 {
@@ -17,6 +16,7 @@ int pop(int*p,int *top)
         printf("stack underflow\n") ;
         return -9999 ;
     }
+
     return *p ;
 }
 void display(int *p,int *top)
@@ -24,7 +24,7 @@ void display(int *p,int *top)
 
     if(top<0)
     {
-        printf("stack is empty\n") ;
+        printf("0; stack is empty\n") ;
     }
     int x ;
     for(x=*top;x>=0;x--)
@@ -40,18 +40,22 @@ int main()
     scanf("%c",&c) ;
     while(c=='y')
     {
+
         printf("enter the number you want to push\n") ;
         scanf("%d",&n) ;
         push(n,&a[top],&top) ;
+
         printf("for pushing again press 'y'\n") ;
         fflush(stdin) ;
         scanf("%c",&c) ;
     }
+    
     printf("If you want to pop an element press 'y'\n") ;
     fflush(stdin) ;
     scanf("%c",&c) ;
     while(c=='y')
     {
+        top-- ;
         f=pop(&a[top],&top) ;
         printf("the popped element is %d\n",f) ;
         printf("for poping again press 'y'\n") ;
