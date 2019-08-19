@@ -22,7 +22,7 @@ int pop(int*p,int *top)
 void display(int *p,int *top)
 {
 
-    if(top<0)
+    if(*top<0)
     {
         printf("0; stack is empty\n") ;
     }
