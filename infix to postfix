@@ -61,3 +61,9 @@ void main()
  char infix[20] ;
  char postfix[20] ;
  printf("enter the valid infix expression\n") ;
+ scanf("%s",infix) ;
+ infix_postfix(infix,postfix) ;
+ printf("the postfix expression is\n") ;
+ printf("%s\n",postfix) ;
+}
+
