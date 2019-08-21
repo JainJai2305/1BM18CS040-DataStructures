@@ -52,14 +52,27 @@ int main ()
     char infix[100] ;
     gets(infix) ;
     int l=strlen(infix) ;
-    for(int x=0;x<l;x++)
+    for(int x=0;x<=l;x++)
     {
+        if(x==l)
+        {
+            while(top>1)
+            {
+                char v=pop() ;
+                printf("%c",v) ;
+
+            }
+        }
         if(infix[x]=='(')
         {
             push(infix[x]) ;
         }
         else if(infix[x]=='+'||infix[x]=='-'||infix[x]=='^'||infix[x]=='*'||infix[x]=='/')
         {
+            if(top==0)
+            {
+                push(infix[x]) ;
+            }
             int pi=prec(infix[x]) ;
             int pt=prec(stack[top-1]) ;
             while(pi<pt)
@@ -84,7 +97,7 @@ int main ()
         {
             printf("%c",infix[x]) ;
         }
+
     }
 
 }
-
