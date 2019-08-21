@@ -1,69 +1,90 @@
-# include<stdio.h>
-# include<string.h>
-int f(char symbol)
+#include <stdio.h>
+#include<string.h>
+int top=0 ;
+char stack[100] ;
+int prec(char c)
 {
-   switch(symbol)
-	{
-	 case'+' :
-	 case'-' :return 2 ;
-	 case'*' :
-	 case'/' :return 4 ;
-	 case'^' :
-	 case'$' :return 5 ;
-	 case'(' :return 0 ;
-	 case'#' :return -1 ;
-	 default: return 8 ;
-	}
+    int  p ;
+    if(c=='(')
+    {
+        p=0 ;
+    }
+    if(c=='^')
+    {
+        p=3 ;
+    }
+    if(c=='*'||c=='/')
+    {
+        p=2 ;
+    }
+    if(c=='+'||c=='-')
+    {
+        p=1 ;
+    }
+    return p ;
 }
-int g(char symbol)
+void push(char c)
 {
-   switch(symbol)
-	{
-	 case'+' :
-	 case'-' :return 1 ;
-	 case'*' :
-	 case'/' :return 3 ;
-	 case'^' :
-	 case'$' :return 6 ;
-	 case'(' :return 9 ;
-	 case')' :return 0 ;
-	 default: return 7 ;
-	}
+    if(top>=100)
+    {
+        printf("stack overflow\n") ;
+        return ;
+    }
+    stack[top]=c ;
+    top++ ;
 }
-void infix_postfix(char infix[],char postfix[])
+char pop()
 {
-	int top,i,j ;
-	char s[30],symbol ;
-	top=-1 ;
-	s[++top]='#' ;
-	j=0 ;
-	for(i=0;i<strlen(infix);i++)
-	{
-	 symbol=infix[i] ;
-	 while(f(s[top])>g(symbol))
-	 {
-	  postfix[j]=s[top--] ;
-	  j++ ;
-	 }
-	 if(f(s[top])!=g(symbol))
-	 s[++top]=symbol ;
-	 else
-	 top-- ;
-	}
-	while(s[top]!='#')
-	{
-	 postfix[j++]=s[top--] ;
-	}
-	postfix[j]='\0' ;
-	}
-void main()
+    if(top<0)
+    {
+        printf("stack underflow\n");
+        top-- ;
+        return ;
+    }
+    top-- ;
+    char a=stack[top] ;
+
+    return a ;
+}
+int main ()
 {
- char infix[20] ;
- char postfix[20] ;
- printf("enter the valid infix expression\n") ;
- scanf("%s",infix) ;
- infix_postfix(infix,postfix) ;
- printf("the postfix expression is\n") ;
- printf("%s\n",postfix) ;
+    printf("enter the infix expression\n") ;
+    char infix[100] ;
+    gets(infix) ;
+    int l=strlen(infix) ;
+    for(int x=0;x<l;x++)
+    {
+        if(infix[x]=='(')
+        {
+            push(infix[x]) ;
+        }
+        else if(infix[x]=='+'||infix[x]=='-'||infix[x]=='^'||infix[x]=='*'||infix[x]=='/')
+        {
+            int pi=prec(infix[x]) ;
+            int pt=prec(stack[top-1]) ;
+            while(pi<pt)
+            {
+                char j=pop() ;
+                printf("%c",j) ;
+                pt=prec(stack[top]) ;
+            }
+            push(infix[x]) ;
+
+        }
+        else if(infix[x]==')')
+        {
+            char g=pop() ;
+            while(g!='(')
+            {
+                printf("%c",g) ;
+                g=pop() ;
+            }
+        }
+        else
+        {
+            printf("%c",infix[x]) ;
+        }
+    }
+
 }
 
