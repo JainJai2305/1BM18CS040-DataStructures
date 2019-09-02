@@ -1,0 +1,59 @@
+#include<stdio.h>
+# include<string.h>
+void push(int*r,int*p,int n)
+{
+    if(*r>=100)
+    {
+        printf("queue overflow \n") ;
+        return ;
+    }
+    *(p+*r)=n ;
+    (*r)++ ;
+}
+int del (int *f,int*r,int*p)
+{
+    int s ;
+    if(*f>=*r)
+    {
+        printf("stack underflow \n") ;
+    }
+    s=*(p+*f) ;
+    (*f)++ ;
+    return s ;
+}
+void display(int r,int f,int*p)
+{
+    if(f>=r)
+    {
+        printf("0; queue is empty \n") ;
+    }
+    for(int x=f;x<r;x++)
+    {
+        printf("%d\n",*(p+x)) ;
+    }
+}
+void main()
+{
+    int q[100] ;
+    int front=0,n,r, rear=0 ;
+    int pr ;
+    char c ;
+    printf("enter the number of processes \n") ;
+    scanf("%d",&pr) ;
+    printf("enter the time of execution each process\n ") ;
+    for(int x=0;x<4;x++)
+    {
+       scanf("%d",&n) ;
+       push(&rear,&q[0],n) ;
+    }
+    int sum=0 ;
+    for(int x=0;x<4;x++)
+    {
+
+        printf("process %d      time of execution:  %d    to     ",(x+1),sum) ;
+        int dd=del (&front,&rear,&q[0]) ;
+        sum+=dd ;
+        printf("%d\n",sum) ;
+    }
+
+}
