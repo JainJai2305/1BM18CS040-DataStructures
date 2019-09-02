@@ -1,0 +1,67 @@
+#include<stdio.h>
+# include<string.h>
+void push(int*r,int*p,int n)
+{
+    if(*r>=100)
+    {
+        printf("queue overflow \n") ;
+        return ;
+    }
+    *(p+*r)=n ;
+    (*r)++ ;
+}
+int del (int *f,int*r,int*p)
+{
+    int s ;
+    if(*f>=*r)
+    {
+        printf("stack underflow \n") ;
+    }
+    s=*(p+*f) ;
+    (*f)++ ;
+    return s ;
+}
+void display(int r,int f,int*p)
+{
+    if(f>=r)
+    {
+        printf("0; queue is empty \n") ;
+    }
+    for(int x=f;x<r;x++)
+    {
+        printf("%d\n",*(p+x)) ;
+    }
+}
+void main()
+{
+    int q[100] ;
+    int front=0,n,r, rear=0 ;
+    char c ;
+    printf("for pushing element into the queue press y \n") ;
+    scanf("%c",&c) ;
+    while(c=='y')
+    {
+       printf("enter the element you want to insert\n") ;
+       scanf("%d",&n) ;
+       push(&rear,&q[0],n) ;
+       printf("for pushing again press y \n") ;
+       fflush(stdin) ;
+       scanf("%c",&c) ;
+
+    }
+    printf("for deleting element press y \n") ;
+    fflush(stdin) ;
+    scanf("%c",&c) ;
+    while(c=='y')
+    {
+       r=del(&front,&rear,&q[0]) ;
+       printf("%d is deleted \n",r) ;
+       printf("for deleting an element press y \n") ;
+       fflush(stdin) ;
+       scanf("%c",&c) ;
+
+    }
+    printf("the elements are :\n") ;
+    display( rear, front,&q[0]) ;
+
+}
