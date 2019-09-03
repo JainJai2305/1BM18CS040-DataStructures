@@ -52,3 +52,15 @@ int main()
 		printf("press y for inserting element in queue") ;
 		fflush(stdin) ;
 		scanf("%c",&c) ;
+	}
+	printf("press y for deleting element from queue") ;
+	scanf("%c",&c) ;
+	while(c=='y')
+	{
+		delete(&cq[0],&front,&rear) ;
+		printf("press y for inserting element in queue") ;
+		fflush(stdin) ;
+		scanf("%c",&c) ;
+	}
+	display(front, rear,&cq[0]) ;
+}
