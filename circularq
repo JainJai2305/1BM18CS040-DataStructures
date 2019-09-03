@@ -1,75 +1,88 @@
-# include<stdio.h>
-# include <string.h>
+#include<stdio.h>
+
 #define size 10
-void insert (int item,int*r,int*f,int*p)
-{
-	if(*f==*r+1||(*f==0&&*r==size-1))
-	{
-	  printf("queue is full\n") ;
-	  return ;
-	}
-	if(*f==-1)
-	{
-	  *f=0 ;
-	}
 
-	*(p+*r)=item ;
-	*r=(*r+1)%size ;
-}
-int del(int*p,int*f,int*r)
+void insert(int item,int *r,int q[],int *f)
 {
-	int item ;
-	if(*f>=*r)
+	if((*f==*r+1)||(*f==0 && *r==size-1))
 	{
-	  printf("queue is empty\n") ;
-	  return -999 ;
+	printf("queue is full\n");
+	return;
 	}
-	item=*(p+*f) ;
-	*f=(*f+1)%size ;
+if(*f==-1)
+*f=0;
+*r=(*r+1)%size;
+q[*r]=item;
+}
 
-	return item ;
-}
-void display(int f,int r,int*p)
+int delete(int q[],int *f,int *r)
 {
-    if(f>=r)
+int item;
+if(*f==-1)
 	{
-	  printf("queue is empty\n") ;
+	printf("queue is empty\n");
+	return -9999;
 	}
-	int i ;
-	for(i= f;i<r;i++)
+else
 	{
-		printf("%d\n",*(p+i)) ;
+	item=q[*f];
+		if(*f==*r)
+		{
+		*f=-1;
+		*r=-1;
+		}
+		else
+		{
+		*f=(*f+1)%size;
+		return item;
+		}
 	}
 }
+
+void display(int q[],int f,int r)
+{
+int i;
+if(f==-1)
+	{
+	printf("queue is empty\n");
+	return;
+	}
+printf("contents are:\n");
+for(i=f;i!=r;i=(i+1)%size)
+	{
+	printf("%d\n",q[i]);
+	}
+printf("%d\n",q[i]);
+}
+
 int main()
 {
-	int n ;
-	int rear=0 ;
-	int front=0 ;
-	int cq[10] ;
+int n,f=-1,item,r=-1,ele,q[size];
+while(n!=0)
+{
+printf("ENTER YOUR CHOICE\n");
 
-	char c ;
-	printf("press y for inserting element in queue\n") ;
-	scanf("%c",&c) ;
-	while(c=='y')
+printf("1=insertion,2=deletion,3=display,0=quit\n");
+scanf("%d",&n);
+
+
+
+
+
+
+switch(n)
 	{
-		printf("enter the element you want to insert\n") ;
-		scanf("%d",&n) ;
-		insert (n,&rear,&front,&cq[0]) ;
-		printf("press y for inserting element in queue\n") ;
-		fflush(stdin) ;
-		scanf("%c",&c) ;
+	case 1:printf("enter element\n");
+		scanf("%d",&item);
+		insert(item,&r,q,&f);
+		break;
+	case 2:ele=delete(q,&f,&r);
+		printf("deleted elemet is %d\n",ele);
+		break;
+	case 3: display(q,f,r);
+		break;
+	default:printf("enter valid number\n");
 	}
-	printf("press y for deleting element from queue\n") ;
-	fflush(stdin) ;
-	scanf("%c",&c) ;
-	while(c=='y')
-	{
-		int res=del(&cq[0],&front,&rear) ;
-		printf("%d is been deleted\n",res) ;
-		printf("press y for deleting element from queue\n") ;
-		fflush(stdin) ;
-		scanf("%c",&c) ;
-	}
-	display(front, rear,&cq[0]) ;
+}
+return 0;
 }
