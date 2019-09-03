@@ -1,0 +1,54 @@
+# include<stdio.h>
+# include <string.h>
+void insert (int item,int*r,int*f,int*p)
+{
+	if(*f==*r+1||(*f==0&&*r==size-1))
+	{ 
+	  printf("queue is full\n") ;
+	  return ;
+	}
+	if(*f==-1)
+	{ 
+	  *f=0 ;
+	}
+	*r=(*r+1)%size ;
+	*(p+*r)=item ;
+}
+int delete(int*p,int*f,int*r)
+{
+	int item ;
+	if(*f==0)
+	{
+	  printf("queue is empty\n") ;
+	  return -999 ;
+	}
+	item=*(p+*f) ;
+	*f=(*f+1)%size ;
+	
+	return item ;
+}
+void display(int f,int r,int*p)
+{
+	int i ;
+	for(i= f;i<=r;i++)
+	{
+		printf("%d\n",*(p+i)) ;
+	}
+}
+int main()
+{
+	int n ;
+	int rear=-1 ;
+	int front=0 ;
+	int cq[10] ;
+	char c ;
+	printf("press y for inserting element in queue") ;
+	scanf("%c",&c) ;
+	while(c=='y')
+	{
+		printf("enter the element you want to insert") ;
+		scanf("%d",&n) ; 
+		insert (n,rear,front,&cq[0]) ;
+		printf("press y for inserting element in queue") ;
+		fflush(stdin) ;
+		scanf("%c",&c) ;
