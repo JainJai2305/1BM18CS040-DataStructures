@@ -1,5 +1,6 @@
 # include<stdio.h>
 # include <string.h>
+#define size 10
 void insert (int item,int*r,int*f,int*p)
 {
 	if(*f==*r+1||(*f==0&&*r==size-1))
@@ -11,8 +12,9 @@ void insert (int item,int*r,int*f,int*p)
 	{ 
 	  *f=0 ;
 	}
-	*r=(*r+1)%size ;
+	
 	*(p+*r)=item ;
+	*r=(*r+1)%size ;
 }
 int delete(int*p,int*f,int*r)
 {
@@ -30,7 +32,7 @@ int delete(int*p,int*f,int*r)
 void display(int f,int r,int*p)
 {
 	int i ;
-	for(i= f;i<=r;i++)
+	for(i= f;i<r;i++)
 	{
 		printf("%d\n",*(p+i)) ;
 	}
@@ -38,27 +40,29 @@ void display(int f,int r,int*p)
 int main()
 {
 	int n ;
-	int rear=-1 ;
+	int rear=0 ;
 	int front=0 ;
 	int cq[10] ;
+	
 	char c ;
-	printf("press y for inserting element in queue") ;
+	printf("press y for inserting element in queue\n") ;
 	scanf("%c",&c) ;
 	while(c=='y')
 	{
-		printf("enter the element you want to insert") ;
+		printf("enter the element you want to insert\n") ;
 		scanf("%d",&n) ; 
-		insert (n,rear,front,&cq[0]) ;
-		printf("press y for inserting element in queue") ;
+		insert (n,&rear,&front,&cq[0]) ;
+		printf("press y for inserting element in queue\n") ;
 		fflush(stdin) ;
 		scanf("%c",&c) ;
 	}
-	printf("press y for deleting element from queue") ;
+	printf("press y for deleting element from queue\n") ;
+	fflush(stdin) ;
 	scanf("%c",&c) ;
 	while(c=='y')
 	{
 		delete(&cq[0],&front,&rear) ;
-		printf("press y for inserting element in queue") ;
+		printf("press y for inserting element in queue\n") ;
 		fflush(stdin) ;
 		scanf("%c",&c) ;
 	}
