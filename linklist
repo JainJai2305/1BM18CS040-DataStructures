@@ -1,0 +1,32 @@
+# include<stdio.h>
+struct list 
+{
+	int data;
+	struct*next ;
+	typedef struct*list NODE ;
+	NODE create() 
+	{
+		NODE p=(NODE)malloc(struct list)
+		if(p==null)
+		{
+		 printf("memory not allocated") ;
+		 return null ;
+		}
+		return p ;
+	}
+	NODE insertfront(int ele,NODE head)
+	NODE p=create() ;
+	p ->data=item ;
+	p ->next=head ;
+	head=p
+	return head ;
+}
+void display
+{ 	
+	NODE p ;
+	if(head==null)
+	{ 
+	 printf("list is empty \n") ;
+	 exit(0) ;
+	}	
+	
