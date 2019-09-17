@@ -10,7 +10,7 @@ struct list
 		if(p==null)
 		{
 		 printf("memory not allocated") ;
-		 return null ;
+		 return NULL ;
 		}
 		return p ;
 	}
@@ -24,9 +24,28 @@ struct list
 void display
 { 	
 	NODE p ;
-	if(head==null)
+	if(head==NULL)
 	{ 
 	 printf("list is empty \n") ;
 	 exit(0) ;
 	}	
-	
+	P=head
+	while(p=NULL)
+	{
+	 printf("%d\n",p->data) ;
+	 p=p->next ;
+	}
+}
+void inssert end(int item,NODE head)
+{
+	NODE p,q ;
+	q=create() ;
+	q-> data=item ;
+	p=head ;
+	while(p->next!=NULL)
+	{
+	 p=p->next ;
+	}
+	p->next=q ;
+	q->next=NULL ;
+}
