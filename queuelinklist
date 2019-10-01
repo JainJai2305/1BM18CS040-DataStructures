@@ -1,0 +1,84 @@
+# include<stdio.h>
+# include<stdlib.h>
+struct node
+{
+	int data ;
+	struct node*next ;
+} ;
+typedef struct node* NODE ;
+NODE create()
+{
+    NODE p=(NODE)malloc(sizeof(struct node));
+    if(p==NULL)
+	{
+		printf("memory is not allocated\n");
+		return NULL;
+	}
+    return p;
+}
+NODE insert_end(int item,NODE head)
+{
+    NODE p,q;
+    q=create();
+    q->data=item;
+    p=head;
+	if(head==NULL)
+	{head =q ;return head ;}
+
+    while(p->next != NULL)
+	{
+		p=p->next;
+	}
+    p->next=q;
+    q->next=NULL;
+	return head ;
+}
+NODE delete_front(NODE head)
+{
+    NODE p=head;
+    if(head==NULL)
+	{
+		printf("list is empty");
+		return head;
+	}
+    printf("Deleted element is %d\n",p->data);
+    head=p->next;
+    return head;
+}
+void display(NODE head)
+{
+    NODE p;
+    if (head==NULL)
+	{
+		printf("list is empty");
+		return;
+	}
+    p=head;
+    while(p != NULL)
+	{
+		printf("%d\n",p->data);
+		p=p->next;
+	}
+}
+
+void main()
+{
+    NODE head=NULL;
+    int ch,i=1,n,pos;
+    printf("enter your choice 1 for insertion and 2 for deletion 3 for display 0 to exit\n") ;
+    scanf("%d",&ch) ;	
+    while(ch!=0)
+    {
+	if(ch==1)
+	{printf("enter the element to be inserted\n") ; scanf("%d",&n) ;head=insert_end(n, head) ;}
+	if(ch==2)
+	{head=delete_front(head) ;}
+	if(ch==3)
+	{ display(head) ;}	
+	if(ch==0)
+	{break ;}
+	printf("enter your choice \n") ;
+	scanf("%d",&ch) ;
+	
+    }
+}
