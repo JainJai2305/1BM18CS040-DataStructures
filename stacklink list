@@ -1,0 +1,56 @@
+# include<stdio.h>
+# include<stdlib.h>
+struct node
+{
+	int data ;
+	struct node*next ;
+} ;
+typedef struct node* NODE ;
+void insertion(int n, NODE top)
+{
+	NODE p=NULL ;
+	p=(NODE)(malloc(sizeof(struct node))) ;
+	if(p==NULL)
+	{ printf("no memory allocated \n") ;}
+	else
+	{ p->next=top ; top=p ;}
+}
+void deletion(NODE top)
+{
+	if(top==NULL)
+	printf("stack underflow") ;
+	else
+	{ printf("%d is deleted \n",top->data) ;top=top->next ;}
+}
+void dsplay(NODE top)
+{
+	NODE q=top ;
+	if(q== NULL)
+	{ printf("stack is empty \n") ;}
+	while(q!=NULL)
+	{
+		printf("%d \n",q->data) ;
+		q=q->next ;
+	}
+}
+int main()
+{
+	int ch,n ;
+	NODE top=NULL ;
+	printf("enter your choice 1 for insertion and 2 for deletion 3 for display 0 to exit\n") ;
+	scanf("%d",&ch) ;
+	while(ch!=0)
+	{
+		if(ch==1)
+		{printf("enter the element to be inserted\n") ; scanf("%d",&n) ;insertion( n , top) ;}
+		if(ch==2)
+		{deletion( top) ;}
+		if(ch==3)
+		{dsplay(top) ;}	
+		if(ch==0)
+		{break ;}
+		printf("enter your choice \n") ;
+		scanf("%d",&ch) ;
+	}
+}	
+	
