@@ -1,3 +1,11 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
 # include<stdio.h>
 # include<stdlib.h>
 struct node
@@ -94,6 +102,11 @@ NODE del(int ele,NODE head)
 	{
 		printf("element not found \n") ;
 	}
+	else if(q->next==NULL)
+	{
+	    p=q->prev ;
+	    p->next=NULL ;
+	}
 	else if(q==head)
 	{
 		if(head->next==NULL)
@@ -171,10 +184,3 @@ int main()
 	
 	return 0 ;
 }	
-	
-
-
-
-
-
-
